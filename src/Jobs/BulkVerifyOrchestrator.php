@@ -8,6 +8,7 @@ use App\Jobs\BulkVerify;
 use App\Library\Traits\Trackable;
 use App\Library\VerificationAccountInterface;
 use App\Model\Subscription;
+use App\Services\Plans\Credits\CreditsService;
 use Acelle\Server\Model\VerificationCampaign;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
@@ -161,7 +162,9 @@ class BulkVerifyOrchestrator implements ShouldQueue
 
     protected function makeBulkVerifyJob(AssignedContactsTarget $target, VerificationAccountInterface $server): BulkVerify
     {
-        $job = new BulkVerify($target, $server, $this->subscription);
+        $creditTracker = app(CreditsService::class)->verifyEmailTracker($this->subscription);
+
+        $job = new BulkVerify($target, $server, $creditTracker);
 
         if (!is_null($this->monitor)) {
             $job->setMonitor($this->monitor);

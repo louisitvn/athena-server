@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('type');
             $table->string('status');
             $table->string('file_name')->nullable();
-            $table->string('error')->nullable();
+            $table->text('error')->nullable();
             $table->timestamps();
         });
     }

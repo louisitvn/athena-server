@@ -13,7 +13,7 @@ return [
         [
             'name' => 'zerobounce-primary',
             'weight' => 30,
-            'class' => 'App\\Library\\Services\\VerificationAccount',
+            'class' => 'Acelle\\Server\\Library\\Services\\VerificationAccount',
             'type' => 'zerobounce.net',
             'credentials' => [
                 'api_key' => '2f43dbce040a4f1c90dddc6757fdab2c',
@@ -23,7 +23,7 @@ return [
         [
             'name' => 'fake-random-service',
             'weight' => 30,
-            'class' => 'App\\Library\\Services\\FakeAccount',
+            'class' => 'Acelle\\Server\\Library\\Services\\FakeAccount',
             'credentials' => [
                 'api_key' => 'fake-api-key',
             ],

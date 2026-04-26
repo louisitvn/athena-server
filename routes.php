@@ -44,9 +44,12 @@ Route::group([
     Route::get('monitor-list/{tab?}',                                       'MonitorController@list')->name('monitor.list');
 });
 
-// API (api_key_auth)
+// API — uses Acelle core's TokenGuard (auth:api). Pass token via:
+//   ?api_token=<users.api_token>             (query string)
+//   POST body field api_token=...
+//   Authorization: Bearer <api_token>        (header)
 Route::group([
-    'middleware' => ['api_key_auth'],
+    'middleware' => ['auth:api'],
     'namespace'  => '\Acelle\Server\Controllers\Api',
     'prefix'     => 'plugins/acelle/server/api/v1',
     'as'         => 'acelle_server.api.',

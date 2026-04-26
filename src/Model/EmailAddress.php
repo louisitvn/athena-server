@@ -175,4 +175,15 @@ class EmailAddress extends Model
 
         return $record;
     }
+
+    public static function createForCustomer($email, Customer $customer)
+    {
+        $record = new static();
+        $record->verification_status = VerificationStatus::NEW->value;
+        $record->email = $email;
+        $record->customer_id = $customer->id;
+        $record->save();
+
+        return $record;
+    }
 }

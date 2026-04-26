@@ -162,7 +162,11 @@ class BulkVerifyOrchestrator implements ShouldQueue
 
     protected function makeBulkVerifyJob(AssignedContactsTarget $target, VerificationAccountInterface $server): BulkVerify
     {
-        $creditTracker = app(CreditsService::class)->verifyEmailTracker($this->subscription);
+        // Wait: not this type of credit
+        //   $creditTracker = app(CreditsService::class)->verifyEmailTracker($this->subscription);
+        // It should be something like
+        //   $creditTracker = app(CreditsService::class)->selfVerifyCreditsTracker($this->subscription);
+        $creditTracker = null; // temporary null, not credit enforcement for now
 
         $job = new BulkVerify($target, $server, $creditTracker);
 

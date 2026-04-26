@@ -1,0 +1,20 @@
+{
+    "name": "acelle/server",
+    "title": "Acelle Server (Verification Engine)",
+    "version": "1.0.0",
+    "app_version": "4.0.24",
+    "description": "Self-hosted email verification engine: bulk verification campaigns, file upload, REST API, weighted server pool (local Athena engine + provider delegation).",
+    "autoload": {
+        "psr-4": {
+            "Acelle\\Server\\": "src/"
+        }
+    },
+    "extra": {
+        "setting-route": "\\Acelle\\Server\\Controllers\\ValidateController@index",
+        "laravel": {
+            "providers": [
+                "Acelle\\Server\\ServiceProvider"
+            ]
+        }
+    }
+}
